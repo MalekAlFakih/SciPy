@@ -4,5 +4,5 @@ build:
     python: "3.13"
 
 sphinx:
-  configuration: path/to/your/conf.py
+  configuration: conf.py
   fail_on_warning: true
