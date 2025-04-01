@@ -26,8 +26,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-import os
-import sys
-sys.path.insert(0, os.path.abspath('.'))
 
-html_output = os.getenv('READTHEDOCS_OUTPUT', '_build/html')
+import os
+if os.environ.get("READTHEDOCS"):
+    html_output = os.path.join(os.environ["READTHEDOCS_OUTPUT"], "html")
