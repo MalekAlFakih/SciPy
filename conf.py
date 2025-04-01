@@ -32,11 +32,13 @@ if os.environ.get("READTHEDOCS"):
     html_output = os.path.join(os.environ["READTHEDOCS_OUTPUT"], "html")
 import os
 
-# Read the Docs environment variable check
+# Force correct output directory in Read the Docs environment
 if os.environ.get("READTHEDOCS") == "True":
-    html_output = os.environ["READTHEDOCS_OUTPUT"]
+    html_output = os.path.join(os.environ["READTHEDOCS_OUTPUT"], "html")
+    if not os.path.exists(html_output):
+        os.makedirs(html_output)
+    html_static_path = [html_output]
+    html_build_dir = html_output  # This ensures Sphinx uses the correct directory
 else:
-    html_output = "_build"
+    html_build_dir = "_build/html"
 
-# Set output directory
-html_static_path = [html_output]
