@@ -1,44 +1,72 @@
-# Configuration file for the Sphinx documentation builder.
+
 #
-# For the full list of built-in configuration values, see the documentation:
+# This file only contains a selection of the most common options. For a full
+# list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+# -- Path setup --------------------------------------------------------------
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+#
+import os
+import sys
+# sys.path.insert(0, os.path.abspath('..'))
+
 # -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-import sphinx_rtd_theme
 
 project = 'Machine learning using quantum'
 copyright = '2025, Mohamed Malek Al Fakih & Abdellah Bichlifen'
 author = 'Mohamed Malek Al Fakih & Abdellah Bichlifen'
+# The full version, including alpha/beta/rc tags
+release = '0.1.0'
 
 # -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+# Add any Sphinx extension modules here, as strings. They can be
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# ones.
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.mathjax',
+]
 
+# Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# List of patterns, relative to source directory, that match files and
+# directories to ignore when looking for source files.
+# This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-
-
 # -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-html_theme = "sphinx_rtd_theme"
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
+# The theme to use for HTML and HTML Help pages.  See the documentation for
+# a list of builtin themes.
+#
+html_theme = 'sphinx_rtd_theme'
 
-import os
-if os.environ.get("READTHEDOCS"):
-    html_output = os.path.join(os.environ["READTHEDOCS_OUTPUT"], "html")
-import os
+# Add any paths that contain custom static files (such as style sheets) here,
+# relative to this directory. They are copied after the builtin static files,
+# so a file named "default.css" will overwrite the builtin "default.css".
+html_static_path = ['_static']
 
-# Force correct output directory in Read the Docs environment
-if os.environ.get("READTHEDOCS") == "True":
-    html_output = os.path.join(os.environ["READTHEDOCS_OUTPUT"], "html")
-    if not os.path.exists(html_output):
-        os.makedirs(html_output)
-    html_static_path = [html_output]
-    html_build_dir = html_output  # This ensures Sphinx uses the correct directory
-else:
-    html_build_dir = "_build/html"
+# -- Extension configuration -------------------------------------------------
+
+# Napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+napoleon_include_init_with_doc = False
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = True
+napoleon_use_admonition_for_examples = False
+napoleon_use_admonition_for_notes = False
+napoleon_use_admonition_for_references = False
+napoleon_use_ivar = False
+napoleon_use_param = True
+napoleon_use_rtype = True
+napoleon_type_aliases = None
 
