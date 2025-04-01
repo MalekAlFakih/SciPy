@@ -30,3 +30,13 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 import os
 if os.environ.get("READTHEDOCS"):
     html_output = os.path.join(os.environ["READTHEDOCS_OUTPUT"], "html")
+import os
+
+# Read the Docs environment variable check
+if os.environ.get("READTHEDOCS") == "True":
+    html_output = os.environ["READTHEDOCS_OUTPUT"]
+else:
+    html_output = "_build"
+
+# Set output directory
+html_static_path = [html_output]
